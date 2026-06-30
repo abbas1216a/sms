@@ -1,34 +1,32 @@
-# sms (Static)
+# school management system
 
-This folder contains a static school management dashboard built with HTML, CSS and vanilla JavaScript.
+A beautiful, interactive wedding ceremony wishes page built with HTML, CSS, and JavaScript.
 
-How to publish using GitHub Pages
+## Files
 
-1. Initialize a git repository (if not already):
+- `index.html` 
+- `style.css` 
+- `script.js` 
+- `README.md` 
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: school-management-system"
+## How to use
+
+1. Open `index.html` in your browser.
+
+## Features
+
+- Confetti animation falling from top
+- Multiple random wedding wishes
+- Smooth hover effects
+- Responsive design for all devices
+- Dark elegant theme with gold accents
+
+## GitHub Pages URL
+
+If you publish this repository with GitHub Pages, the wedding page is available at:
+
+```
+https://abbas1216a.github.io/sms/
 ```
 
-2. Create a GitHub repository and push (replace `<your-repo>`):
-
-Using GitHub CLI:
-```bash
-gh repo create sms --public --source=. --remote=origin --push
-```
-
-Or manually create the repo on github.com and then:
-```bash
-git remote add origin https://github.com/abbas1216a/sms.git
-git push -u origin main
-```
-
-3. The included GitHub Actions workflow (`.github/workflows/pages.yml`) will automatically publish the repository to GitHub Pages after push. The site URL will be:
-
-`https://abbas1216a.github.io/sms/`
-
-Notes
-- If your default branch is `master`, push to `master` instead of `main`.
-- The workflow deploys the repository root — if you prefer only the `school-management-system` subfolder, change the `path` in the workflow to `./school-management-system`.
+Replace `<USERNAME>` and `<REPO_NAME>` with your GitHub username and repository name.
