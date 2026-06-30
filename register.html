@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <h2>Student Registration</h2>
+        <form onsubmit="register(event)">
+            <div class="input-box">
+                <label>Full Name</label>
+                <input id="regName" type="text" placeholder="Enter Full Name" required>
+            </div>
+            <div class="input-box">
+                <label>Email</label>
+                <input id="regEmail" type="email" placeholder="Enter Email" required>
+            </div>
+            <div class="input-box">
+                <label>Phone</label>
+                <input id="regPhone" type="tel" placeholder="03XXXXXXXXX">
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <input id="regPassword" type="password" placeholder="Password" required>
+            </div>
+            <div class="input-box">
+                <label>Confirm Password</label>
+                <input id="regConfirmPassword" type="password" placeholder="Confirm Password" required>
+            </div>
+            <div class="input-box">
+                <label>Course</label>
+                <select id="regCourse">
+                    <option value="Web Development">Web Development</option>
+                    <option value="Graphic Design">Graphic Design</option>
+                    <option value="AI">AI</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Gender</label>
+                <div class="gender">
+                    <label><input type="radio" name="gender" value="Male" checked> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Address</label>
+                <textarea id="regAddress" rows="4" placeholder="Enter Address"></textarea>
+            </div>
+            <button type="submit"><i class="fa-solid fa-user-plus"></i> Register</button>
+            <div class="register">
+                Already have an account? <a href="index.html">Login</a>
+            </div>
+        </form>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <h2>Welcome Back</h2>
+        <p>Login to Student Dashboard</p>
+        <form onsubmit="login(event)">
+            <div class="input-box">
+                <label>Email</label>
+                <input id="loginEmail" type="email" placeholder="Enter Email" required>
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <input id="loginPassword" type="password" placeholder="Enter Password" required>
+            </div>
+            <div class="options">
+                <label><input type="checkbox"> Remember</label>
+                <a href="forgot-password.html">Forgot Password?</a>
+            </div>
+            <button type="submit">Login</button>
+            <div class="register">
+                Don't have an account? <a href="register.html">Register</a>
+            </div>
+        </form>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><i class="fa-solid fa-user-graduate"></i> SMS</div>
+        <ul>
+            <li onclick="showSection('dashboardSection')"><i class="fa-solid fa-house"></i> Dashboard</li>
+            <li onclick="showSection('studentsSection')"><i class="fa-solid fa-user"></i> Students</li>
+            <li onclick="showSection('teachersSection')"><i class="fa-solid fa-chalkboard-user"></i> Teachers</li>
+            <li onclick="showSection('coursesSection')"><i class="fa-solid fa-book"></i> Courses</li>
+            <li onclick="showSection('admissionsSection')"><i class="fa-solid fa-file-import"></i> Admissions</li>
+            <li onclick="showSection('papersSection')"><i class="fa-solid fa-file-lines"></i> Papers</li>
+            <li onclick="showSection('statisticsSection')"><i class="fa-solid fa-chart-line"></i> Statistics</li>
+            <li onclick="showSection('settingsSection')"><i class="fa-solid fa-gear"></i> Settings</li>
+            <li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <div class="title-group">
+                <h2 id="pageTitle">Student Dashboard</h2>
+                <p>Manage students, teachers, courses, papers, and results in one place.</p>
+            </div>
+            <div class="topbar-actions">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="search" type="text" placeholder="Search...">
+                </div>
+                <div class="profile">Admin</div>
+            </div>
+        </div>
+        <div id="dashboardSection" class="page-section active">
+            <div class="cards">
+                <div class="card"><div><p>Total Students</p><h3 id="studentCount" class="counter" data-target="0">0</h3></div><i class="fa-solid fa-users"></i></div>
+                <div class="card"><div><p>Teachers</p><h3 id="teacherCount" class="counter" data-target="0">0</h3></div><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="card"><div><p>Courses</p><h3 id="courseCount" class="counter" data-target="0">0</h3></div><i class="fa-solid fa-book-open"></i></div>
+                <div class="card"><div><p>Results</p><h3 id="resultCount" class="counter" data-target="0">0</h3></div><i class="fa-solid fa-file-lines"></i></div>
+                <div class="card"><div><p>Revenue</p><h3 id="revenueCount" class="counter" data-target="0">$0</h3></div><i class="fa-solid fa-dollar-sign"></i></div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-card"><h3>Student Admissions</h3><canvas id="myChart"></canvas></div>
+                <div class="chart-card"><button id="darkBtn">🌙 Dark Mode</button><h2 id="clock"></h2><h3 id="today"></h3></div>
+            </div>
+            <div class="widgets">
+                <div class="calendar-card">
+                    <h2>Calendar</h2>
+                    <input id="calendarDate" type="date">
+                    <div class="admission-info">
+                        <h3>Admissions on selected date</h3>
+                        <p id="todayAdmissions">0 students</p>
+                        <ul id="admissionList"></ul>
+                    </div>
+                </div>
+                <div class="weather-card"><h2>Weather</h2><h1>☀️</h1><h2>31°C</h2><p>Sunny</p></div>
+                <div class="progress-card"><h2>Attendance</h2><div class="circle">90%</div></div>
+            </div>
+        </div>
+        <div id="studentsSection" class="page-section">
+            <div class="actions">
+                <button onclick="exportPDF()">Export PDF</button>
+                <button onclick="exportExcel()">Export Excel</button>
+                <button onclick="window.print()">Print</button>
+            </div>
+            <div class="table-box">
+                <h2>Students List</h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Class</th><th>Admission Date</th><th>Email</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="studentTable"></tbody>
+                </table>
+            </div>
+            <div class="form-box">
+                <h2>Add Student</h2>
+                <input type="text" id="name" placeholder="Student Name">
+                <input type="email" id="email" placeholder="Email">
+                <input type="date" id="admissionDate" placeholder="Admission Date">
+                <div style="margin:15px 0;">
+                    <label style="display:block;margin-bottom:10px;color:#94a3b8;">Select Class:</label>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;">
+                        <label><input type="radio" name="studentClass" value="Nursery"> Nursery</label>
+                        <label><input type="radio" name="studentClass" value="Class 1"> Class 1</label>
+                        <label><input type="radio" name="studentClass" value="Class 2"> Class 2</label>
+                        <label><input type="radio" name="studentClass" value="Class 3"> Class 3</label>
+                        <label><input type="radio" name="studentClass" value="Class 4"> Class 4</label>
+                        <label><input type="radio" name="studentClass" value="Class 5"> Class 5</label>
+                        <label><input type="radio" name="studentClass" value="Class 6"> Class 6</label>
+                        <label><input type="radio" name="studentClass" value="Class 7"> Class 7</label>
+                        <label><input type="radio" name="studentClass" value="Class 8"> Class 8</label>
+                    </div>
+                </div>
+                <button onclick="addStudent()">Add Student</button>
+            </div>
+        </div>
+        <div id="teachersSection" class="page-section">
+            <div class="table-box">
+                <h2>Teachers</h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Subject</th><th>Email</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="teacherTable"></tbody>
+                </table>
+            </div>
+            <div class="form-box">
+                <h2>Add Teacher</h2>
+                <input type="text" id="teacherName" placeholder="Teacher Name">
+                <input type="text" id="teacherSubject" placeholder="Subject">
+                <input type="email" id="teacherEmail" placeholder="Email">
+                <button onclick="addTeacher()">Add Teacher</button>
+            </div>
+        </div>
+        <div id="coursesSection" class="page-section">
+            <div class="table-box">
+                <h2>Courses</h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Course Name</th><th>Description</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="courseTable"></tbody>
+                </table>
+            </div>
+            <div class="form-box">
+                <h2>Add Course</h2>
+                <input type="text" id="courseName" placeholder="Course Name">
+                <input type="text" id="courseDescription" placeholder="Description">
+                <button onclick="addCourse()">Add Course</button>
+            </div>
+        </div>
+        <div id="admissionsSection" class="page-section">
+            <div class="table-box">
+                <h2>Admissions Record</h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Student Name</th><th>Class</th><th>Course</th><th>Email</th><th>Admission Date</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="admissionTable"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="papersSection" class="page-section">
+            <div class="table-box">
+                <h2>Papers & Results</h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Student</th><th>Class</th><th>Course</th><th>Score</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="resultTable"></tbody>
+                </table>
+            </div>
+            <div class="form-box">
+                <h2>Add Result</h2>
+                <input type="text" id="resultStudent" placeholder="Student Name">
+                <div style="margin:12px 0;">
+                    <label style="display:block;margin-bottom:10px;color:#94a3b8;font-size:13px;">Class:</label>
+                    <select id="resultClass" style="width:100%;padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;color:#e2e8f0;">
+                        <option value="">Select Class</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="Class 1">Class 1</option>
+                        <option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option>
+                        <option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                        <option value="Class 6">Class 6</option>
+                        <option value="Class 7">Class 7</option>
+                        <option value="Class 8">Class 8</option>
+                    </select>
+                </div>
+                <input type="text" id="resultCourse" placeholder="Course">
+                <input type="number" id="resultScore" placeholder="Score" min="0" max="100">
+                <button id="resultSubmitBtn" onclick="addResult()">Add Result</button>
+            </div>
+        </div>
+        <div id="statisticsSection" class="page-section">
+            <div class="table-box">
+                <h2>Statistics</h2>
+                <p>View analytics and performance metrics.</p>
+            </div>
+            <div class="chart-container">
+                <div class="chart-card"><h3>Enrollment Trend</h3><canvas id="statsChart"></canvas></div>
+                <div class="chart-card">
+                    <h3>Quick Stats</h3>
+                    <p id="quickStudents">Total Students: 0</p>
+                    <p id="quickCourses">Total Courses: 0</p>
+                    <p id="quickResults">Total Results: 0</p>
+                    <p id="quickRevenue">Monthly Revenue: $0</p>
+                </div>
+            </div>
+        </div>
+        <div id="settingsSection" class="page-section">
+            <div class="table-box">
+                <h2>Settings</h2>
+                <p>Update your dashboard preferences.</p>
+                <div class="form-box">
+                    <label>Notification Email</label>
+                    <input type="email" placeholder="admin@example.com">
+                    <label>Theme</label>
+                    <select>
+                        <option>Light</option>
+                        <option>Dark</option>
+                    </select>
+                    <button>Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
