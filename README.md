@@ -16,18 +16,18 @@ git commit -m "Initial commit: school-management-system"
 
 Using GitHub CLI:
 ```bash
-gh repo create <sms> --public --source=. --remote=origin --push
+gh repo create sms --public --source=. --remote=origin --push
 ```
 
 Or manually create the repo on github.com and then:
 ```bash
-git remote add origin https://github.com/<your-username>/<your-repo>.git
+git remote add origin https://github.com/abbas1216a/sms.git
 git push -u origin main
 ```
 
 3. The included GitHub Actions workflow (`.github/workflows/pages.yml`) will automatically publish the repository to GitHub Pages after push. The site URL will be:
 
-`https://<your-username>.github.io/<your-repo>/`
+`https://abbas1216a.github.io/sms/`
 
 Notes
 - If your default branch is `master`, push to `master` instead of `main`.
